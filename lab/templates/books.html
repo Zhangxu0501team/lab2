@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<br>
+
+<div id="div1">
+    <center id="list0">
+
+    {% for book in books %}
+        <h2 onclick="getDetails({{ book.ISBN }})" id={{ book.ISBN }}>{{ book.Title }}  </h2><button onclick="deleteBook({{ book.ISBN }})">删除这本书</button>
+        <button onclick="update({{ book.ISBN }})">更新这本书</button>
+    {% endfor %}
+</center>
+
+<br>
+
+</div>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    function getDetails(isbn) {
+        $(document).ready(function () {
+        $.get("/getDetails/",{"isbn":isbn},function (ret) {
+            $("#"+isbn).html(ret)
+        })
+    });
+    }
+    function deleteBook(isbn) {
+        $(document).ready(function () {
+            $.get("/delete/",{"isbn":isbn})
+            alert("删除成功！请刷新查看")
+
+        })
+    }
+        function update(isbn) {
+        $(document).ready(function () {
+
+            $.get("/getUpdate/",{"isbn":isbn},function (data) {
+                document.write(data)
+                
+            })
+
+        })
+    }
+</script>
+
+</body>
+</html>

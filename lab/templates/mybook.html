@@ -1,0 +1,52 @@
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+<title></title>
+<meta http-equiv="Content-Language" content="zh-CN">
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf8">
+</head>
+<body>
+
+<center>
+    <h2>添加作者</h2>
+<form action="/addNewAuthor/" method="get">
+    作者名字: <input type="text" name="name"> <br>
+    作者年龄: <input type="text" name="age"> <br>
+    作者国家: <input type="text" name="country"> <br>
+    <input type="submit" value="提交" onclick="f('添加作者成功！')">
+</form>
+
+    <h2>添加书籍</h2>
+
+    <form action="/addNewBook/" method="get">
+        ISBN: <input type="text" name="isbn"> <br>
+        书名: <input type="text" name="title"> <br>
+        出版社: <input type="text" name="publisher"> <br>
+        出版日期:<input type="text" name="publishdate" id="date" onblur="check()"> <br>
+        价格:<input type="text" name="price"> <br>
+        作者<input type="text" name="authorname"> <br>
+        <input type="submit" value="提交" onclick="f('添加书籍成功！')">
+    </form>
+
+
+    <h2>查询书籍</h2>
+    <form action="/search/" method="get">
+        作者名:<input type="text" name="authorname"><br>
+        <input type="submit" value="查询">
+    </form>
+</center>
+<script>
+        function check(){
+var a = /^(\d{4})-(\d{2})-(\d{2})$/
+if (!a.test(document.getElementById("date").value)) {
+alert("日期格式不正确!需要填写yyyy-mm-dd格式")
+return false
+}
+else
+return true
+}
+function f(str) {
+    alert(str)
+}
+</script>
+</body>
+</html>
